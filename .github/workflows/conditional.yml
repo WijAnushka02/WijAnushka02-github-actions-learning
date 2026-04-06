@@ -33,3 +33,5 @@ jobs:
 
       - name: Final Summary
         run: echo "✅ Workflow execution finished."
+
+        # This workflow demonstrates how to conditionally execute steps based on the branch being pushed to. The deployment step will only run if the push is to the 'main' branch, while a notification will be shown for other branches.
