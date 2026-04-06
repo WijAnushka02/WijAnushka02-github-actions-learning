@@ -1,0 +1,35 @@
+name: Conditional Execution Workflow
+
+on:
+  push:
+    branches: [main, develop]
+  workflow_dispatch: # Allows manual testing
+
+jobs:
+  conditional-job:
+    name: Conditional Step Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: General Build Step
+        run: echo "🔨 Building the application (runs on all branches)..."
+
+      # --- TASK 9: Conditional Deployment Step ---
+      - name: Deploy (main only)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "🚀 Deploying to production..."
+          echo "This step only runs because you are on the MAIN branch."
+
+      - name: Notify Developer
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "ℹ️ Skipping deployment."
+          echo "Current branch is: ${{ github.ref }}"
+      # --- TASK 9 END ---
+
+      - name: Final Summary
+        run: echo "✅ Workflow execution finished."
