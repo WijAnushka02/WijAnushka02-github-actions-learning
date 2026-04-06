@@ -47,10 +47,18 @@ jobs:
         run: npm run lint
         continue-on-error: true
       
-      # Build application
       - name: Build application
         working-directory: ./sample-app
         run: npm run build
+
+      - name: Create artifact
+        run: echo "Build output for Node ${{ matrix.node-version }}" > output-${{ matrix.node-version }}.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output-${{ matrix.node-version }}
+          path: output-${{ matrix.node-version }}.txt
       
       - name: Run tests
         working-directory: ./sample-app
@@ -74,22 +82,31 @@ jobs:
             echo "⚠️ No coverage report found"
           fi
 
+  download-job:
+    name: Download and Verify Artifact
+    runs-on: ubuntu-latest
+    needs: [build-and-test] 
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./downloaded-artifacts
+
+      - name: Display structure of downloaded files
+        run: ls -R ./downloaded-artifacts
+
   lint-check:
     name: Lint Check
     runs-on: ubuntu-latest
-    
     steps:
       - uses: actions/checkout@v4
-      
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
           cache-dependency-path: 'sample-app/package-lock.json'
-      
       - working-directory: ./sample-app
         run: npm ci
-      
       - name: Run ESLint
         working-directory: ./sample-app
         run: npm run lint
@@ -100,7 +117,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-and-test]
     if: always()
-    
     steps:
       - name: Print test results
         run: |
