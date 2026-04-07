@@ -7,9 +7,9 @@ assignees: ['nisalgunawardhana']
 
 ## 🎖️ Badge Submission
 
-**Submitted by:** @YOUR-USERNAME  
-**Badge Level:** [Select: Beginner / Intermediate / Advanced]  
-**Date:** [Date]  
+**Submitted by:** @WijAnushka02 
+**Badge Level:** Beginner
+**Date:** 07/04/2026 
 **Status:** Pending Review
 
 ---
