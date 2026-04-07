@@ -1,0 +1,26 @@
+name: Beginner Workflow
+
+on: 
+  push:                # Task 2: Triggered by push
+    branches: [ main, working-beginner-* ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Task 1 - Hello World
+        run: echo "Hello World"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install and Test
+        run: |
+          npm install
+          npm test      # Task 3: Running local tests
+          
