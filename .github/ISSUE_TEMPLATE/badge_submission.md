@@ -1,7 +1,7 @@
 ---
 name: 🎖️ Badge Submission
 about: Submit your completed tasks for badge review
-title: "🎖️ Badge Submission - [Your Name]"
+title: "🎖️ Badge Submission - Anushka Wijesinghe "
 labels: ['submission', 'pending-review']
 assignees: ['nisalgunawardhana']
 ---
@@ -20,20 +20,20 @@ Type your level (type exactly as shown):
 - Type: **advanced** (Tasks 8-10)
 
 **My Level:** 
-
+Beginner
 ---
 
 ## 👤 Your Information
 
-**GitHub Username:** @[your-username]
+**GitHub Username:** @WijAnushka02
 
-**Contact Email (for updates):** you@example.com
+**Contact Email (for updates):** anushkadilinuwan02@gmail.com
 
-**PR Link:** [Paste your pull request URL]
+**PR Link:** Feature/my featurebranch by WijAnushka02 · Pull Request #1 · WijAnushka02/WijAnushka02-github-actions-learning
 
-**Branch Name:** working-[level]-[yourname]
+**Branch Name:** working-beginner-WijAnushka02
 
-**Submission File:** .github/submissions/[level]-[yourname].md
+**Submission File:** .github/submissions/beginner-badge-WijAnushka02.md
 
 ---
 
@@ -41,11 +41,11 @@ Type your level (type exactly as shown):
 
 Before submitting, confirm:
 
-- [ ] I have completed ALL tasks for my level
-- [ ] I have created the submission file in `.github/submissions/`
-- [ ] I have created a Pull Request
-- [ ] I have added evidence/screenshots to my submission
-- [ ] I have read the [README.md](README.md)
+- [x] I have completed ALL tasks for my level
+- [x] I have created the submission file in `.github/submissions/`
+- [x] I have created a Pull Request
+- [x] I have added evidence/screenshots to my submission
+- [x] I have read the [README.md](README.md)
 
 ---
 
