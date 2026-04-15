@@ -2,21 +2,30 @@ name: Hello World Workflow
 
 on:
   push:
-    branches: [main, develop]
+    branches:
+      - main
+      - develop
   workflow_dispatch:
 
 jobs:
   hello:
     name: Say Hello
     runs-on: ubuntu-latest
-    
+
     steps:
+      # Step 1: Checkout repository (BEST PRACTICE: first step)
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Print hello message
       - name: Print hello message
         run: echo "🎉 Hello from GitHub Actions!"
-      
+
+      # Step 3: Print current time
       - name: Print current time
         run: date
-      
+
+      # Step 4: Print GitHub runner info
       - name: Print runner information
         run: |
           echo "Runner OS: ${{ runner.os }}"
@@ -24,20 +33,23 @@ jobs:
           echo "GitHub SHA: ${{ github.sha }}"
           echo "GitHub Ref: ${{ github.ref }}"
           echo "Actor: ${{ github.actor }}"
-      
-      - name: Check out code
-        uses: actions/checkout@v4
-      
+
+      # Step 5: List repository files
       - name: List files
         run: ls -la
 
+      # Step 6: Access secret safely
       - name: Access secret
         env:
-          # We map the GitHub Secret to a local environment variable
           MY_SECRET: ${{ secrets.TEST_SECRET }}
         run: |
-          echo "Secret length: ${#MY_SECRET}"
-          echo "GitHub automatically masks secrets: $MY_SECRET"
-      
+          if [ -z "$MY_SECRET" ]; then
+            echo "⚠️ Secret is NOT set"
+          else
+            echo "✅ Secret is set (value hidden)"
+            echo "Secret length: ${#MY_SECRET}"
+          fi
+
+      # Step 7: Final success message
       - name: Print success message
         run: echo "✅ Workflow completed successfully!"
